@@ -29,6 +29,7 @@ Body ->
 ```bash
 git clone https://github.com/sb185482/userservice.git
 cd userservice/
+mvn clean install
 docker build -t datanautsuserservice .
 docker run -p 8080:8080 datanautsuserservice
 ```
