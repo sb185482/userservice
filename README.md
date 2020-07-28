@@ -12,8 +12,8 @@ GET -> http://localhost:8080/users/1
 DELETE -> http://localhost:8080/users/1
 
 4. Add a User
-POST -> http://localhost:8080/users
-Headers -> { "X-COM-PERSIST" : true }
+POST -> http://localhost:8080/users \
+Headers -> { "X-COM-PERSIST" : true } \
 Body ->
 {
    "userId":21,
