@@ -1,9 +1,9 @@
 # datanautsuserservice
 
-API Endpoints (can be queried with Postman): 
+API Endpoints (can be queried with Postman):
 
 1. Get All Users
-GET ->
+GET -> http://localhost:8080/users
 
 2. Get User By UserId
 GET -> http://localhost:8080/users/1
