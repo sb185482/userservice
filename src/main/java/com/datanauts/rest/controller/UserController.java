@@ -2,9 +2,14 @@ package com.datanauts.rest.controller;
 
 import java.net.URI;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -23,22 +28,34 @@ public class UserController
     @Autowired
     private UserDAO userDao;
     
-    @GetMapping(path="/", produces = "application/json")
+    @GetMapping(path="", produces = "application/json")
     public Users getUsers() 
     {
         return userDao.getAllUsers();
     }
     
-    @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
+    @GetMapping(path="/{userId}", produces = "application/json")
+    public User getUserByUserId(@PathVariable @NotNull @DecimalMin("0") Integer userId) 
+    {
+        return userDao.getUserByUserId(userId);
+    }
+    
+    @DeleteMapping(path="/{userId}", produces = "application/json")
+    public Boolean deleteUserByUserId(@PathVariable @NotNull @DecimalMin("0") Integer userId) 
+    {
+        return userDao.deleteUserByUserId(userId);
+    }
+    
+    @PostMapping(path= "", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> addUser(
                         @RequestHeader(name = "X-COM-PERSIST", required = true) String headerPersist,
-                        @RequestHeader(name = "X-COM-LOCATION", required = false, defaultValue = "ASIA") String headerLocation,
+                        @RequestHeader(name = "X-COM-LOCATION", required = false, defaultValue = "UK") String headerLocation,
                         @RequestBody User user) 
                  throws Exception 
     {       
         //Generate resource id
         Integer id = userDao.getAllUsers().getUserList().size() + 1;
-        user.setId(id);
+        user.setUserId(id);
         
         //add resource
         userDao.addUser(user);
@@ -46,7 +63,7 @@ public class UserController
         //Create resource location
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                                     .path("/{id}")
-                                    .buildAndExpand(user.getId())
+                                    .buildAndExpand(user.getUserId())
                                     .toUri();
         
         //Send location in response

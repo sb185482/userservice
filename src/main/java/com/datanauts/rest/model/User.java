@@ -6,44 +6,42 @@ public class User {
 
     }
 
-    public User(Integer id, String firstName, String lastName, String email) {
+	public User(Integer userId, String name, String email, String address, String phone, String accountNo) {
         super();
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.userId = userId;
+        this.name = name;
         this.email = email;
+        
+        this.address = address;
+        this.phone = phone;
+        this.accountNo = accountNo;
     }
  
-    private Integer id;
-    private String firstName;
-    private String lastName;
+    private Integer userId;
+    private String name;
     private String email;
+    
+    private String address;
+    private String phone;
+    private String accountNo;
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getName() {
+		return name;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
+	public String getEmail() {
         return email;
     }
 
@@ -51,8 +49,35 @@ public class User {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
-    }
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAccountNo() {
+		return accountNo;
+	}
+
+	public void setAccountNo(String accountNo) {
+		this.accountNo = accountNo;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", address=" + address + ", phone=" + phone
+				+ ", accountNo=" + accountNo + "]";
+	}
+	
+    
 }
