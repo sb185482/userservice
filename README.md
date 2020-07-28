@@ -15,6 +15,7 @@ DELETE -> http://localhost:8080/users/1
 POST -> http://localhost:8080/users \
 Headers -> { "X-COM-PERSIST" : true } \
 Body ->
+```json
 {
    "userId":21,
    "name":"Karlee Halvorson",
@@ -23,3 +24,4 @@ Body ->
    "phone":"1000023720",
    "accountNo":"1027867"
 }
+```
