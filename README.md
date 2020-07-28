@@ -1,6 +1,6 @@
 # datanautsuserservice
 
-API Endpoints (can be queried with Postman):
+## API Endpoints (can be queried with Postman):
 
 1. Get All Users
 GET -> http://localhost:8080/users
@@ -24,4 +24,11 @@ Body ->
    "phone":"1000023720",
    "accountNo":"1027867"
 }
+```
+## Run in Docker
+```bash
+git clone https://github.com/sb185482/userservice.git
+cd userservice/
+docker build -t datanautsuserservice .
+docker run -p 8080:8080 datanautsuserservice
 ```
