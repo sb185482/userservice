@@ -1,4 +1,4 @@
-# datanautsuserservice
+# Datanauts Userservice
 
 ## API Endpoints (can be queried with Postman):
 
