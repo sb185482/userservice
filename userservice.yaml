@@ -21,6 +21,9 @@ spec:
           ports:
             - containerPort: 8080
               name: userservice
+          env:
+            - name: ANOTHER_VALUE
+              value: balhhh
 ---
 apiVersion: v1
 kind: Service

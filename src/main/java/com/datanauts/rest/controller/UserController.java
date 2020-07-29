@@ -1,12 +1,11 @@
 package com.datanauts.rest.controller;
 
 import java.net.URI;
+import java.util.logging.Logger;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,9 +27,8 @@ import com.datanauts.rest.model.Users;
 @RequestMapping(path = "/users")
 public class UserController 
 {
+	private static Logger logger = Logger.getLogger(UserController.class.getName());
 
-	Logger logger = LogManager.getLogger(getClass());
-    
     @Autowired
     private UserDAO userDao;
     
