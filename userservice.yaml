@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userservice-deployment
+  labels:
+    app: userservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: userservice
+  template:
+    metadata:
+      labels:
+        app: userservice
+    spec:
+      containers:
+        - name: userservice
+          image: gcr.io/datanauts/userservice:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: userservice
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: userservice
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: userservice
+  selector:
+    app: userservice

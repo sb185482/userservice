@@ -5,6 +5,8 @@ import java.net.URI;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,28 +23,35 @@ import com.datanauts.rest.dao.UserDAO;
 import com.datanauts.rest.model.User;
 import com.datanauts.rest.model.Users;
 
+
 @RestController
 @RequestMapping(path = "/users")
 public class UserController 
 {
+
+	Logger logger = LogManager.getLogger(getClass());
+    
     @Autowired
     private UserDAO userDao;
     
     @GetMapping(path="", produces = "application/json")
     public Users getUsers() 
     {
+    	logger.info("getUsers()");
         return userDao.getAllUsers();
     }
     
     @GetMapping(path="/{userId}", produces = "application/json")
     public User getUserByUserId(@PathVariable @NotNull @DecimalMin("0") Integer userId) 
     {
+    	logger.info("getUserByUserId(" + userId + ")");
         return userDao.getUserByUserId(userId);
     }
     
     @DeleteMapping(path="/{userId}", produces = "application/json")
     public Boolean deleteUserByUserId(@PathVariable @NotNull @DecimalMin("0") Integer userId) 
     {
+    	logger.info("deleteUserByUserId(" + userId + ")");
         return userDao.deleteUserByUserId(userId);
     }
     
@@ -56,6 +65,8 @@ public class UserController
         //Generate resource id
         Integer id = userDao.getAllUsers().getUserList().size() + 1;
         user.setUserId(id);
+        
+        logger.info("addUser(" + user.toString() + ")");
         
         //add resource
         userDao.addUser(user);
