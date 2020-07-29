@@ -1,0 +1,5 @@
+gcloud auth login
+kubectl get services
+kubectl get pods
+kubectl describe pod userservice-deployment-56c9d89768-gqvxf
+kubectl delete pod userservice-deployment-56c9d89768-gqvxf
